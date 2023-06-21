@@ -2,6 +2,7 @@
 """ Console Module """
 import cmd
 import sys
+import uuid
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -10,6 +11,9 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import os
+import re
+from datetime import datetime as dt
 
 
 class HBNBCommand(cmd.Cmd):
@@ -158,9 +162,9 @@ class HBNBCommand(cmd.Cmd):
             if not hasattr(obj_kwargs, 'id'):
                 obj_kwargs['id'] = str(uuid.uuid4())
             if not hasattr(obj_kwargs, 'created_at'):
-                obj_kwargs['created_at'] = str(datetime.now())
+                obj_kwargs['created_at'] = str(dt.now())
             if not hasattr(obj_kwargs, 'updated_at'):
-                obj_kwargs['updated_at'] = str(datetime.now())
+                obj_kwargs['updated_at'] = str(dt.now())
             new_instance = HBNBCommand.classes[class_name](**obj_kwargs)
             new_instance.save()
             print(new_instance.id)

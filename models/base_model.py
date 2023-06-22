@@ -3,7 +3,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 import uuid
 import models
-from datetime import datetime
+from datetime import datetime as dt
 from sqlalchemy import Column, Integer, String, DateTime
 
 
@@ -15,37 +15,37 @@ class BaseModel:
     for other classes
     """
     id = Column(String(60), unique=True, nullable=False, primary_key=True)
-    created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
-    updated_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
+    created_at = Column(DateTime, nullable=False, default=(dt.utcnow()))
+    updated_at = Column(DateTime, nullable=False, default=(dt.utcnow()))
 
     def __init__(self, *args, **kwargs):
         """Instantiation of base model class
         Args:
             args: it won't be used
-            kwargs: arguments for the constructor of the BaseModel
+            kwargs: keyword args for the constructor of the BaseModel
         Attributes:
-            id: unique id generated
-            created_at: creation date
-            updated_at: updated date
+            id: unique id generated from uuid
+            created_at: creation date defaults to now
+            updated_at: updated date defaults and updates to now
         """
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    value = dt.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
             if "id" not in kwargs:
                 self.id = str(uuid.uuid4())
             if "created_at" not in kwargs:
-                self.created_at = datetime.now()
+                self.created_at = dt.now()
             if "updated_at" not in kwargs:
-                self.updated_at = datetime.now()
+                self.updated_at = dt.now()
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = self.updated_at = datetime.now()
+            self.created_at = self.updated_at = dt.now()
 
     def __str__(self):
-        """returns a string
+        """tp prints the base_model
         Return:
             returns a string of class name, id, and dictionary
         """
@@ -53,14 +53,14 @@ class BaseModel:
             type(self).__name__, self.id, self.__dict__)
 
     def __repr__(self):
-        """return a string representaion
+        """returns string representaion of base_model
         """
         return self.__str__()
 
     def save(self):
         """updates the public instance attribute updated_at to current
         """
-        self.updated_at = datetime.now()
+        self.updated_at = dt.now()
         models.storage.new(self)
         models.storage.save()
 

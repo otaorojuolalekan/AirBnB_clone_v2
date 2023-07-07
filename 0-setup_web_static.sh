@@ -14,14 +14,9 @@ fi
 sudo ufw allow 'Nginx HTTP'
 
 # create directories if not existing / do nothing if existing
-# for dir in /data/web_static/{shared,releases/test}; do
-#     sudo mkdir -p "$dir"
-# done
-sudo mkdir -p /data/
-sudo mkdir -p /data/web_static/
-sudo mkdir -p /data/web_static/releases/
-sudo mkdir -p /data/web_static/shared/
-sudo mkdir -p /data/web_static/releases/test/
+for dir in /data/web_static/{shared,releases/test}; do
+    sudo mkdir -p "$dir"
+done
 
 # create fake file index.html
 fakebody=\

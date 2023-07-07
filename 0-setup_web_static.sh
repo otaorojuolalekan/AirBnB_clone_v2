@@ -4,7 +4,7 @@
 # update and upgrade system files
 sudo apt update && sudo apt -y upgrade > /dev/null
 # install nginx if not already installed
-if [[ ! -f /usr/sbin/nginx ]] then;
+if [[ ! -f /usr/sbin/nginx ]]; then
     sudo apt -y install nginx > /dev/null
 else
     echo -e "\t--- NGINX is already installed ---"
@@ -35,7 +35,7 @@ fakebody=\
   <p style="color: #666666; font-size: 18px;">If you have any questions, please don/t hesitate to contact us.</p>
 </body>
 </html>'
-echo $fakebody > /data/web_static/releases/test/index.html
+echo -e $fakebody > /data/web_static/releases/test/index.html
 
 # create a forced symbolic link
 ln -sf  /data/web_static/releases/test/ /data/web_static/current

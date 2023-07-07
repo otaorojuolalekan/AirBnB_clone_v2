@@ -52,4 +52,3 @@ sudo service nginx restart
 echo ".......restarting nginx service......"
 
 echo -e "\t SCRIPT RAN SUCCESSFULLY"
-exit 0

@@ -14,12 +14,14 @@ fi
 sudo ufw allow 'Nginx HTTP'
 
 # create directories if not existing / do nothing if existing
-for dir in /data/web_static/{shared,releases/test}; do
-    sudo mkdir -p "$dir"
-done
-
-# give folder ownership to ubuntu and group Recursively
-sudo chown -R ubuntu:ubuntu /data/
+# for dir in /data/web_static/{shared,releases/test}; do
+#     sudo mkdir -p "$dir"
+# done
+sudo mkdir -p /data/
+sudo mkdir -p /data/web_static/
+sudo mkdir -p /data/web_static/releases/
+sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
 
 # create fake file index.html
 fakebody=\
@@ -37,19 +39,17 @@ fakebody=\
 echo -e "$fakebody" | sudo tee /data/web_static/releases/test/index.html
 
 # create a forced symbolic link
-ln -sf  /data/web_static/releases/test /data/web_static/current
+sudo ln -sf  /data/web_static/releases/test /data/web_static/current
 
-
+# give folder ownership to ubuntu and group Recursively
+sudo chown -hR ubuntu:ubuntu /data/
 
 # edit config file (append config after listen blah blah)
-sudo sed -i '/server_name _;/a \\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+# sudo sed -i '/server_name _;/a \\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a \\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+# restart nginx service
+sudo service nginx restart
+echo ".......restarting nginx service......"
 
-# start or restart nginx service
-if [[ "$(pgrep -c nginx)" -le 0 ]]; then
-	sudo service nginx start
-	echo ".......starting nginx service......"
-else
-	sudo service nginx restart
-	echo ".......restarting nginx service......"
-fi
 echo -e "\t SCRIPT RAN SUCCESSFULLY"
+exit 0

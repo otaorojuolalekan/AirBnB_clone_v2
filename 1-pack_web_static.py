@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-'''Fabric script to generate .tgz archive'''
+'''Fabric script to generate .tgz archive
+and distribute it on env.host servers'''
 
 from fabric.api import local
 from datetime import datetime as dt
@@ -28,3 +29,4 @@ def do_pack():
     except Exception:
         output_path = None
     return output_path
+

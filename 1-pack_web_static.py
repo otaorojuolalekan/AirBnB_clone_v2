@@ -31,12 +31,14 @@ def do_pack():
     if not os.path.isdir("versions"):
         os.mkdir("versions")
     cur_time = dt.now()
-    output_path = "versions/web_static_{}.tgz".format(dt.strftime(cur_time, "%Y%m%d%H%M%S"))
+    output_path = "versions/web_static_{}.tgz".format(
+            dt.strftime(cur_time, "%Y%m%d%H%M%S"))
     try:
-        print("Packing web_static to {}".format(output))
-        local("tar -cvzf {} web_static".format(output))
-        archize_size = os.stat(output).st_size
-        print("web_static packed: {} -> {} Bytes".format(output, archize_size))
+        print("Packing web_static to {}".format(output_path))
+        local("tar -cvzf {} web_static".format(output_path))
+        archize_size = os.stat(output_path).st_size
+        print("web_static packed: {} -> {} Bytes"
+              .format(output_path, archize_size))
     except Exception:
         output_path = None
     return output_path

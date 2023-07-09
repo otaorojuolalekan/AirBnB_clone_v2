@@ -20,7 +20,7 @@ from fabric.decorators import runs_once
 #         return None
 #     return path
 
-def do_deploy(archive_path):
+def do_pack():
     """Distributes an archive to a web server.
     Args:
         archive_path (str): The path of the archive to distribute.

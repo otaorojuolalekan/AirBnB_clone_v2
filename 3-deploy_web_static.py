@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Fabric script to generate .tgz archive'''
+"""Fabric script to generate .tgz archive"""
 
 from fabric.api import local, run, env, put
 from datetime import datetime as dt

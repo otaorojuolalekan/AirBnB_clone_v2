@@ -29,4 +29,3 @@ def do_pack():
     except Exception:
         output_path = None
     return output_path
-

@@ -1,0 +1,6 @@
+*~
+*.pyc
+settings.json
+*.code-workspace
+fabtests/
+*private_key

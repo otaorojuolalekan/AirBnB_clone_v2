@@ -8,6 +8,7 @@ from os import *
 
 env.hosts = ['52.86.83.227', '100.24.237.214']
 
+
 def do_pack():
     """Distributes an archive to a web server.
     Args:
@@ -30,6 +31,7 @@ def do_pack():
     except Exception:
         output_path = None
     return output_path
+
 
 def do_deploy(archive_path):
     """Deploys the static files to the host servers.

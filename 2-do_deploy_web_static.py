@@ -3,7 +3,7 @@
 Fabscript for deployment
 """
 from datetime import datetime as dt
-from fabric.api import *
+from fabric.api import run, env, put
 from os import path
 
 

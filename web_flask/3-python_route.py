@@ -25,8 +25,15 @@ def c_route(text):
     """Displays c + text
     replacing _s with spaces"""
     text = text.replace('_', ' ')
-    return 'c {}'.format(text)
+    return 'C {}'.format(text)
 
+
+@app.route('/python/<string:text>', strict_slashes=False)
+def py_text(text='is cool'):
+    """Displays c + text
+    replacing _s with spaces"""
+    text = text.replace('_', ' ')
+    return 'Python {}'.format(text)
 
 
 if __name__ == '__main__':

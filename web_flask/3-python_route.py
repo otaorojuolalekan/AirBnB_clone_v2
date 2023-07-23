@@ -33,7 +33,7 @@ def c_route(text):
     """Displays c + text
     replacing _s with spaces"""
     text = text.replace('_', ' ')
-    return 'C {}'.format(text)
+    return "C %s" % text
 
 
 if __name__ == '__main__':

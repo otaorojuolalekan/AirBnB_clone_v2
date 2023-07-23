@@ -21,11 +21,17 @@ def hbnb():
 
 
 @app.route('/c/<string:text>', strict_slashes=False)
-def c_route(text):
-    """Displays c + text
-    replacing _s with spaces"""
-    text = text.replace('_', ' ')
-    return 'c %s' % text
+def c_text(text):
+    """prints C followed by <text> content"""
+    text = text.replace("_", " ")
+    return "C %s" % text
+
+# @app.route('/c/<string:text>', strict_slashes=False)
+# def c_route(text):
+#     """Displays c + text
+#     replacing _s with spaces"""
+#     text = text.replace('_', ' ')
+#     return 'c %s' % text
 
 
 if __name__ == '__main__':

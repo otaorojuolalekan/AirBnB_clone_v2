@@ -28,13 +28,6 @@ def c_route(text):
     return 'c {}'.format(text)
 
 
-@app.route('/c/<string:text>', strict_slashes=False)
-def c_route(text):
-    """Displays c + text
-    replacing _s with spaces"""
-    text = text.replace('_', ' ')
-    return "C %s" % text
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

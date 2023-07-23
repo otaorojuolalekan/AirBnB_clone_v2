@@ -39,7 +39,7 @@ def py_text(text='is cool'):
 @app.route('/number/<int:n>',strict_slashes=False)
 def num_route(n):
     """Routes only if input is an integer"""
-    return '{} is a number'.format(n)
+    return '{:d} is a number'.format(n)
 
 
 if __name__ == '__main__':

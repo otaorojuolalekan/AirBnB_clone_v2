@@ -36,10 +36,10 @@ def py_text(text='is cool'):
     return 'Python {}'.format(text)
 
 
-@app.route('/number/<int:n>',strict_slashes=False)
-def num_route(n):
-    """Routes only if input is an integer"""
-    return '{:d} is a number'.format(n)
+@app.route('/number/<int:n>', strict_slashes=False)
+def number_n(n):
+    """display n if integer"""
+    return "%i is a number" % n
 
 
 if __name__ == '__main__':

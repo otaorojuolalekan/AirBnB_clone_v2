@@ -31,10 +31,15 @@ def c_route(text):
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
 def py_text(text='is cool'):
-    """python + variable
-    Has default value"""
+    """python + variable"""
     text = text.replace('_', ' ')
     return 'Python {}'.format(text)
+
+
+@app.route('/number/<int:n>',strict_slashes=False)
+def num_route(n):
+    """Routes only if input is an integer"""
+    return '{} is a number'.format(n)
 
 
 if __name__ == '__main__':
